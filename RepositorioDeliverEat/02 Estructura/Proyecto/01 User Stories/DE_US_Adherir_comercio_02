@@ -1,0 +1,6 @@
+ADHERIR COMERCIO
+Yo como comercio quiero adherirme a DeliverEat, ingresando los datos del negocio para poder ofrecer mis productos directamente a usuarios de la plataforma.
+*Datos a ingresar: Dirección, teléfono, página web/ fanpage, nombre, apellido, DNI, menú, precios.
+PRUEBAS DE USUARIO
+El usuario se adhiere, cargando todos los datos obligatorios. (PASA)
+El usuario se adhiere sin cargar los datos obligatorios. (NO PASA)
