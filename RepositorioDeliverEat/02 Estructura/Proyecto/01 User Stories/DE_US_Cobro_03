@@ -1,0 +1,6 @@
+COBRO
+Yo como cadete quiero cobrar un pedido a un usuario una vez concretada la entrega, con tarjeta o efectivo, para poder concretar la entrega del pedido.
+*Los tipos de pago pueden ser: Efectivo o Tarjeta de Crédito / Débito. Los datos a ingresar son Importe, tipo de pago. Si es con tarjeta: Número de la tarjeta, nombre del titular, fecha de vencimiento y código de seguridad.
+PRUEBAS DE USUARIO:
+El Usuario ingresa los datos de una tarjeta obsoleta y confirma el pago (NO PASA)
+El Usuario ingresa los datos de la tarjeta correctamente y confirma el pago (PASA)
