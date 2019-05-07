@@ -1,0 +1,6 @@
+REGISTRAR USUARIO
+Yo como usuario quiero registrarme en la aplicación utilizando Facebook, Google o mi correo para solicitar un delivery de un pedido que desee realizar.
+*La longitud de la contraseña debe ser superior a 8 caracteres.
+PRUEBAS DE USUARIO
+El usuario se registra ingresando todos los datos solicitados. (PASA)
+El usuario no ingresa una contraseña mayor a ocho caracteres. (NO PASA)
