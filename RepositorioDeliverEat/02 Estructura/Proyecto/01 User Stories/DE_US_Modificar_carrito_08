@@ -1,0 +1,5 @@
+MODIFICAR CARRITO
+Yo como usuario quiero agregar o quitar productos de mi carrito, para poder seleccionar los productos que deseo incluir en mi pedido.
+*Los items del carrito, pueden quitarse, o modificar las cantidades.
+PRUEBAS DE USUARIO
+El usuario busca un producto, lo añade al carrito y luego lo elimina (PASA)
