@@ -1,0 +1,5 @@
+BÚSQUEDA CON FILTRO DE COMERCIO ADHERIDO
+Yo como usuario quiero buscar los distintos comercios adheridos, aplicando los filtros propuestos para encontrar el comercio que corresponda con mis necesidades de un modo más fácil, y así realizar un pedido.
+*Debe haber filtros por: Tipo de comida, tiempo promedio de entrega, y seguimiento por GPS.
+PRUEBAS DE USUARIO
+El usuario selecciona uno o varios de los filtros disponibles, el sistema muestra los resultados coincidentes (PASA).
