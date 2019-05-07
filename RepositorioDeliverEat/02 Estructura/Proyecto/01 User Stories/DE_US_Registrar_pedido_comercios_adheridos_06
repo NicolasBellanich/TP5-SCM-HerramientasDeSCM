@@ -1,0 +1,6 @@
+REGISTRAR PEDIDO A COMERCIO ADHERIDO
+Yo como usuario, quiero registrar un pedido a un comercio adherido para solicitar el envío de productos de mi necesidad en el destino deseado.
+*Datos para el registro de pedido: Ítems del carrito, tipo de pago, dirección de entrega, datos de usuario.
+PRUEBAS DE USUARIO
+-El usuario registra el pedido, ingresando una dirección de entrega fuera de la zona permitida (NO PASA)
+-El usuario registra el pedido, ingresando los datos correctamente (PASA)
