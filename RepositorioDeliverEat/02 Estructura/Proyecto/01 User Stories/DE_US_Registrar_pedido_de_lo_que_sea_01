@@ -1,0 +1,7 @@
+REGISTRAR PEDIDO DE LO QUE SEA
+Yo como usuario quiero realizar un pedido de lo que sea, de productos que no sean de los comercios adheridos, desribiendo el producto en un cuadro de texto, cargando una foto del mismo e indicando donde conseguirlo, para obtener desde mi casa lo que necesito.
+*Se deben ingresar: descripción en un cuadro de texto, dirección donde encontrarlo, monto a abonar por el producto, y la foto es opcional.
+PRUEBAS DE USUARIO
+El usuario carga la descripción del producto, el importe y la dirección, y registra el pedido. (PASA)
+El usuario no indica la direccion e intenta registrar el pedido. (NO PASA)
+El usuario subre una foto de tamaño superior a los 25 Mb. (NO PASA)
