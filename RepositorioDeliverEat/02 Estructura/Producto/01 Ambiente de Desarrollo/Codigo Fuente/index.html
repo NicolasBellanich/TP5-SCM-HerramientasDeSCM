@@ -82,10 +82,17 @@
                 <input type="text" class="form-control" id="txt_comercio_numero" name="comercio_numero"/>
             </div>
             <div>
-                <label for="txt_comercio_ciudad" class="fas fa-arrow-circle-right">
+                <label for="cmb_comercio_ciudad" class="fas fa-arrow-circle-right">
                     Ciudad
                 </label>
-                <input type="text" class="form-control" id="txt_comercio_ciudad" name="comercio_ciudad"/>
+
+                <select id="cmb_comercio_ciudad" class="form-control" name="comercio_ciudad">
+                    <option value="-1">Seleccione...</option>
+                    <option value="cba">Cordoba</option>
+                    <option value="chan">Chancal</option>
+                    <option value="rio">Rio Cuarto</option>
+                    <option value="mina">Mina clavero</option>
+                </select>
             </div>
             <div>
                 <label for="txt_comercio_referencia" class="fas fa-arrow-circle-right">
@@ -133,9 +140,9 @@
                 </select>
             </div>
             <div>
-                <p class="fas fa-arrow-circle-right">
+                <label for="txt_referencia" class="fas fa-arrow-circle-right">
                     Referencia
-                </p>
+                </label>
                 <input type="text" id="txt_referencia" class="form-control" name="entrega_referencia"/>
             </div>
         </div>
