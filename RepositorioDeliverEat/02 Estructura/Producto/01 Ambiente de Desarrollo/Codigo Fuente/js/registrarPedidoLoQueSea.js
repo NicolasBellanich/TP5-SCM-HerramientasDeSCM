@@ -1,6 +1,15 @@
 ﻿$(function () {
     initialize();
 
+    /*
+    $.notify({
+        message:'hola'
+        }, {
+        type:'success',
+        delay: 500
+    });
+    */
+
     $('input[type=radio]').on('change', function() {
         let div_mostrar;
         let div_ocultar;
@@ -103,7 +112,7 @@
     //     return registrarPedidoLoQueSea();
     // });
 
-    $('#form_registrar_pedido_lo_q_sea').on('submit', function(e){
+    $('#form_registrar_pedido_lo_q_sea').on('submit', function(){
         return validarCampos();
     });
 });
@@ -123,7 +132,9 @@ function initialize() {
 
 function validarCampos() {
     let monto, flag_efectivo, descripcion, flag_direccion, calle, numero,
-        ciudad, referencia, calle_comercio, numero_comercio, ciudad_comercio, referencia_comercio,archivo, tamano_archivo;
+        ciudad, calle_comercio, numero_comercio, ciudad_comercio, archivo, tamano_archivo,
+        numero_tarjeta, nombre_tarjeta, apellido_tarjeta, fecha_vencimiento_tarjeta, cvc, flag_recibir,
+        recibir_fecha, recibir_hora;
 
     flag_efectivo = document.getElementById('radio_pago_efectivo').checked;
     monto = document.getElementById('txt_monto').value;
@@ -134,15 +145,23 @@ function validarCampos() {
     calle_comercio = document.getElementById('txt_comercio_calle').value;
     numero_comercio = document.getElementById('txt_comercio_numero').value;
     ciudad_comercio = document.getElementById('cmb_comercio_ciudad').value;
-    referencia_comercio = document.getElementById('txt_comercio_referencia').value;
 
     calle = document.getElementById('txt_calle').value;
     numero = document.getElementById('txt_numero').value;
     ciudad = document.getElementById('cmb_ciudad').value;
-    referencia = document.getElementById('txt_referencia').value;
 
     archivo = document.getElementById('file_descripcion').files[0];
     tamano_archivo = archivo? archivo.size: 0;
+
+    numero_tarjeta = $('#txt_nro_tarjeta').val();
+    nombre_tarjeta = $('#txt_nom_titular_tarjeta').val();
+    apellido_tarjeta = $('#txt_ape_titular_tarjeta').val();
+    fecha_vencimiento_tarjeta = $('#txt_fec_vencimiento_tarjeta').val();
+    cvc = $('#txt_cvc_tarjeta').val();
+
+    flag_recibir = document.getElementById('radio_recibir_especifico').checked;
+    recibir_fecha = $('#txt_recibir_fecha').val();
+    recibir_hora = $('#txt_recibir_hora').val();
 
     if (descripcion === ""){
         alert('Escriba una descripcion del producto que solicita');
@@ -151,24 +170,37 @@ function validarCampos() {
     }
 
     if (flag_direccion === true ) {
-        if (calle_comercio === "" || numero_comercio === "" || ciudad_comercio === "-1" || referencia_comercio === "") {
+        if (calle_comercio === "" || numero_comercio === "" || ciudad_comercio === "-1") {
             alert('Faltan datos en dirección del comercio');
             document.getElementById('txt_comercio_calle').focus();
             return false;
         }
     }
 
-    if (flag_efectivo === true) {
+    if (calle === "" || numero === "" || ciudad === "-1"){
+        alert('Faltan datos en la dirección de entrega');
+        document.getElementById('txt_calle').focus();
+        return false;
+    }
 
+    if (flag_efectivo === true) {
         if (monto === "") { //monto es numero
             alert('Escriba el monto');
             document.getElementById('txt_monto').focus();
             return false;
         }
     } else{
-        if (calle === "" || numero === "" || ciudad === "-1" || referencia === ""){
-            alert('Faltan datos en la dirección de entrega');
-            document.getElementById('txt_calle').focus();
+        if (numero_tarjeta === '' || nombre_tarjeta === '' ||
+            apellido_tarjeta === '' || fecha_vencimiento_tarjeta === '' ||
+            cvc === ''){
+            alert('Faltan datos de la tarjeta');
+            return false;
+        }
+    }
+
+    if (flag_recibir){
+        if (recibir_fecha === '' || recibir_hora === ''){
+            alert('Faltan datos del lugar donde recibirlo');
             return false;
         }
     }
@@ -177,6 +209,5 @@ function validarCampos() {
         alert('tamaño archivo demaciado grande');
         return false;
     }
-
     return true;
 }
