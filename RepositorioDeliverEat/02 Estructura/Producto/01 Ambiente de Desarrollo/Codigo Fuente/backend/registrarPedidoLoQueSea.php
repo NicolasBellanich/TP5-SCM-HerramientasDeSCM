@@ -4,37 +4,40 @@ require_once ( __DIR__ . '/PedidoLoQSea.php');
 $url_file_pedidos = __DIR__ . '/../../Base de Datos/pedidosLoQueSea.json';
 $url_file_imagenes_descriptivas = __DIR__ . '/../../Base de Datos/images/';
 
+$nombre_archivo_imagen = '';
 
-$uploadOk = 1;
-$nombre_archivo_imagen = basename($_FILES["archivo"]["name"]);
-$target_file = $url_file_imagenes_descriptivas . $nombre_archivo_imagen;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-$check = getimagesize($_FILES["archivo"]["tmp_name"]);
-if($check === false) {
-    //echo "File is not an image.";
-    $uploadOk = 0;
-}
-//if (file_exists($target_file)) {
-    //echo "File already exists.";
-    //$uploadOk = 0;
-//}
-if ($_FILES["archivo"]["size"] > 5000000) {
-    //echo "File is too large.";
-    $uploadOk = 0;
-}
-if($imageFileType != "jpg" ) {
-    //echo "Only JPG files are allowed.";
-    $uploadOk = 0;
-}
-/*if ($uploadOk === 0) {
-    //echo "Sorry, your file was not uploaded.";
-} else {
-    if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $target_file)) {
-        //echo "The file ". basename( $_FILES["archivo"]["name"]). " has been uploaded.";
-    } else {
-        //echo "Sorry, there was an error uploading your file.";
+if ($_FILES["archivo"]['name'] !== ''){
+    $uploadOk = 1;
+    $nombre_archivo_imagen .= basename($_FILES["archivo"]["name"]);
+    $target_file = $url_file_imagenes_descriptivas . $nombre_archivo_imagen;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES["archivo"]["tmp_name"]);
+    if($check === false) {
+        //echo "File is not an image.";
+        $uploadOk = 0;
     }
-}*/
+    //if (file_exists($target_file)) {
+        //echo "File already exists.";
+        //$uploadOk = 0;
+    //}
+    if ($_FILES["archivo"]["size"] > 5000000) {
+        //echo "File is too large.";
+        $uploadOk = 0;
+    }
+    if($imageFileType != "jpg" ) {
+        //echo "Only JPG files are allowed.";
+        $uploadOk = 0;
+    }
+    /*if ($uploadOk === 0) {
+        //echo "Sorry, your file was not uploaded.";
+    } else {
+        if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $target_file)) {
+            //echo "The file ". basename( $_FILES["archivo"]["name"]). " has been uploaded.";
+        } else {
+            //echo "Sorry, there was an error uploading your file.";
+        }
+    }*/
+}
 
 //se obtienen los pedidos ya cargados
 $str = file_get_contents( $url_file_pedidos);
