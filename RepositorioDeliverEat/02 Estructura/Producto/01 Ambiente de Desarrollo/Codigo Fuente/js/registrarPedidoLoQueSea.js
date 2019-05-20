@@ -99,8 +99,12 @@
         }
     });
     */
-    $('#btn_enviar').on('click', function () {
-        registrarPedidoLoQueSea();
+    // $('#btn_enviar').on('click', function () {
+    //     return registrarPedidoLoQueSea();
+    // });
+
+    $('#form_registrar_pedido_lo_q_sea').on('submit', function(e){
+        return validarCampos();
     });
 });
 
@@ -117,26 +121,9 @@ function initialize() {
     $('#div_recibir_especifico').hide();
 }
 
-
-function validarTamano(file) {
-    let jqueryFile = $(file);
-    let FileSize = jqueryFile.files[0].size / 1024 / 1024; // in MB
-    let extension = jqueryFile.value.split('.')[1];
-    if (FileSize < 5 && extension === "jpg")///No esta obteniendo el nombre del archivo.
-    {
-        alert("Todo correcto.Imagen subida");
-    }
-    else
-    {
-
-        alert('File error');
-        $(file).val(''); //esto hace que no se seleccione
-    }
-}
-
 function validarCampos() {
     let monto, flag_efectivo, descripcion, flag_direccion, calle, numero,
-        ciudad, referencia, calle_comercio, numero_comercio, ciudad_comercio, referencia_comercio, archivo;
+        ciudad, referencia, calle_comercio, numero_comercio, ciudad_comercio, referencia_comercio,archivo, tamano_archivo;
 
     flag_efectivo = document.getElementById('radio_pago_efectivo').checked;
     monto = document.getElementById('txt_monto').value;
@@ -154,7 +141,8 @@ function validarCampos() {
     ciudad = document.getElementById('cmb_ciudad').value;
     referencia = document.getElementById('txt_referencia').value;
 
-    archivo = $('#file_descripcion').val();
+    archivo = document.getElementById('file_descripcion').files[0];
+    tamano_archivo = archivo? archivo.size: 0;
 
     if (descripcion === ""){
         alert('Escriba una descripcion del producto que solicita');
@@ -165,7 +153,8 @@ function validarCampos() {
     if (flag_direccion === true ) {
         if (calle_comercio === "" || numero_comercio === "" || ciudad_comercio === "-1" || referencia_comercio === "") {
             alert('Faltan datos en dirección del comercio');
-            document.getElementById('txt_calle').focus();
+            document.getElementById('txt_comercio_calle').focus();
+            return false;
         }
     }
 
@@ -178,21 +167,16 @@ function validarCampos() {
         }
     } else{
         if (calle === "" || numero === "" || ciudad === "-1" || referencia === ""){
-            alert('Faltan datos en la dirección de entrega')
+            alert('Faltan datos en la dirección de entrega');
+            document.getElementById('txt_calle').focus();
+            return false;
         }
     }
 
-    /*
-    if ( !validarTamano(archivo)){
+    if ( tamano_archivo > 5242880){
         alert('tamaño archivo demaciado grande');
         return false;
-    }*/
+    }
 
     return true;
-}
-
-function registrarPedidoLoQueSea() {
-    if (!validarCampos() ){
-        return false;
-    }
 }
