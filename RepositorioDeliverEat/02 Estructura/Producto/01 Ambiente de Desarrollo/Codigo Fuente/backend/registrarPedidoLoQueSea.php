@@ -13,24 +13,27 @@ if ($_FILES["archivo"]['name'] !== ''){
     $target_file = $url_file_imagenes_descriptivas . $nombre_archivo_imagen;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     $check = getimagesize($_FILES["archivo"]["tmp_name"]);
+    $mensaje_file_uploaded = '';
     if($check === false) {
         $flag_exito = false;
         $uploadOk = 0;
+        $mensaje_file_uploaded .= 'El archivo no era imágen';
     }
 
     if ($_FILES["archivo"]["size"] > 5000000) {
         $flag_exito = false;
         $uploadOk = 0;
+        $mensaje_file_uploaded .= 'El archivo era demaciado grande';
     }
     if($imageFileType != "jpg" ) {
         $flag_exito = false;
         $uploadOk = 0;
+        $mensaje_file_uploaded .= 'El archivo no era jpg';
     }
-    if ($uploadOk === 0) {
-        $flag_exito = false;
-    } else {
+    if ($uploadOk !== 0) {
         if (!move_uploaded_file($_FILES["archivo"]["tmp_name"], $target_file)) {
             $flag_exito = false;
+            $mensaje_file_uploaded .= 'Ocurrió un error al intentar subir la imágen';
         }
     }
 }
@@ -55,18 +58,23 @@ if ($flag_exito){
         $str = json_encode($arr);
         if (json_decode($str) != null) {
             $file = fopen($url_file_pedidos,'w');
+            if ( !$file ) {
+                throw new Exception('file_open');
+            }
             fwrite($file, $str);
             fclose($file);
         }
         header('Location: ../index.php?notify_tipo=success&notify_mensaje=Registro cargado exitosamente');
         exit;
     } catch (Exception $e){
-        //agregar el mensaje de error por permisos de archivo json y concatenarlo
-        header('Location: ../index.php?notify_tipo=danger&notify_mensaje=Ocurrió un error cargando el registro');
+        $url = 'Location: ../index.php?notify_tipo=danger&notify_mensaje=Ocurrió un error al intentar guardar el registro';
+        if ($e->getMessage() === 'file_open'){
+            $url .= ', no se pudo acceder a la base de datos';
+        }
+        header($url);
         exit;
     }
 } else{
-        //agregar el mensaje de error del file_uploaded y concatenarlo
-    header('Location: ../index.php?notify_tipo=danger&notify_mensaje=Ocurrió un error cargando el registro');
+    header('Location: ../index.php?notify_tipo=danger&notify_mensaje=Ocurrió un error cargando el registro, ' . $mensaje_file_uploaded);
     exit;
 }
