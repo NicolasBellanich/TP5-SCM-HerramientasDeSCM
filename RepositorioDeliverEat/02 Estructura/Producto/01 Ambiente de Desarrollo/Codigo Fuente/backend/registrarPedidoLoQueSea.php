@@ -61,12 +61,12 @@ if ($flag_exito){
         header('Location: ../index.php?notify_tipo=success&notify_mensaje=Registro cargado exitosamente');
         exit;
     } catch (Exception $e){
-        //agregar el mensaje y concatenarlo
+        //agregar el mensaje de error por permisos de archivo json y concatenarlo
         header('Location: ../index.php?notify_tipo=danger&notify_mensaje=Ocurrió un error cargando el registro');
         exit;
     }
 } else{
-        //agregar el mensaje y concatenarlo
+        //agregar el mensaje de error del file_uploaded y concatenarlo
     header('Location: ../index.php?notify_tipo=danger&notify_mensaje=Ocurrió un error cargando el registro');
     exit;
 }
