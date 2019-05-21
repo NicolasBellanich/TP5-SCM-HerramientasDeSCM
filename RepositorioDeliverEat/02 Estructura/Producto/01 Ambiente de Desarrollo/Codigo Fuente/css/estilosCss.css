@@ -1,0 +1,29 @@
+﻿body {
+    /*
+    background-image: url('../images/white-background.jpg');
+     */
+    /*
+    background-repeat: repeat;
+     */
+}
+
+div {
+    margin-left: 5%
+}
+
+h3{
+    margin-top: 5%
+}
+/*
+button{
+    margin-bottom:5%;
+}
+*/
+hr {
+    color: #0056b2;
+    width: 80%;
+}
+
+label{
+    font-weight: bold;
+}
