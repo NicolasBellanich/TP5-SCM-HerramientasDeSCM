@@ -155,8 +155,14 @@ function validarCampos() {
     }
 
     if ( tamano_archivo > 5242880){
-        crearMultiplesNotificaciones('danger','tamaño archivo demaciado grande');
+        crearMultiplesNotificaciones('danger','Tamaño archivo demaciado grande');
         return false;
     }
+
+    if (!flag_efectivo && !validar_visa(numero_tarjeta)){
+        crearMultiplesNotificaciones('danger','Escriba un número de tarjeta VISA válido de 16 dígitos');
+        return false;
+    }
+
     return true;
 }

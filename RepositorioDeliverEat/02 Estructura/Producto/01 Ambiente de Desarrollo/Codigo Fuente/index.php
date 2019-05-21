@@ -184,7 +184,7 @@
         <div id="div_pago_visa">
             <label for="txt_nro_tarjeta">Número tarjeta
             </label>
-            <input type="text" id="txt_nro_tarjeta" class="form-control" name="pago_nro_tarjeta"/>
+            <input type="text" id="txt_nro_tarjeta" class="form-control" name="pago_nro_tarjeta" placeholder="4XXX-XXXX-XXXX-XXXX"/>
 
             <label for="txt_nom_titular_tarjeta">Nombre titular</label>
             <input type="text" id="txt_nom_titular_tarjeta" class="form-control" name="pago_nom_titular"/>
@@ -243,6 +243,7 @@
     <script src="../Librerias/bootstrap_notify/js/bootstrap_notify.js" ></script>
 
     <script src="js/notifications.js"></script>
+    <script src="js/visaCreditCardValidator.js"></script>
 
     <script src="js/googleMaps.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW-uMMRdBCo8KERPnCuVo2loYz5KcoIqo&callback=myMap"></script>
