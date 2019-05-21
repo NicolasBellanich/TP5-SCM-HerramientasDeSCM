@@ -1,14 +1,11 @@
 ﻿$(function () {
     initialize();
 
-    /*
-    $.notify({
-        message:'hola'
-        }, {
-        type:'success',
-        delay: 500
-    });
-    */
+    if (getAllUrlParams()['notify_tipo'] !== undefined){
+        let tipo = getAllUrlParams()['notify_tipo'];
+        let mensaje = decodeURIComponent(getAllUrlParams()['notify_mensaje']);
+        crearMultiplesNotificaciones(tipo, mensaje);
+    }
 
     $('input[type=radio]').on('change', function() {
         let div_mostrar;
@@ -61,56 +58,6 @@
         div_mostrar.show();
         div_ocultar.hide();
     });
-    /*
-    $('input[type=radio][name=radio_comercio_direccion]').on('change', function() {
-        let div_dir = $('#div_comercio_direccion');
-        let div_maps = $('#div_comercio_maps');
-        switch (this.value) {
-            case 'maps':
-                div_maps.show();
-                div_dir.hide();
-                break;
-            case 'direccion':
-                div_maps.hide();
-                div_dir.show();
-                break;
-        }
-    });
-
-    $('input[type=radio][name=radio_pago]').on('change', function() {
-        //console.log(this.name);
-        let div_efectivo = $('#div_pago_efectivo');
-        let div_visa = $('#div_pago_visa');
-        switch (this.value) {
-            case 'efectivo':
-                div_efectivo.show();
-                div_visa.hide();
-                break;
-            case 'visa':
-                div_visa.show();
-                div_efectivo.hide();
-                break;
-        }
-    });
-
-    $('input[type=radio][name=radio_recibir]').on('change', function() {
-        let div_antes = $('#div_recibir_antes');
-        let div_especifico = $('#div_recibir_especifico');
-        switch (this.value) {
-            case 'antes':
-                div_antes.show();
-                div_especifico.hide();
-                break;
-            case 'especifico':
-                div_especifico.show();
-                div_antes.hide();
-                break;
-        }
-    });
-    */
-    // $('#btn_enviar').on('click', function () {
-    //     return registrarPedidoLoQueSea();
-    // });
 
     $('#form_registrar_pedido_lo_q_sea').on('submit', function(){
         return validarCampos();
@@ -164,28 +111,28 @@ function validarCampos() {
     recibir_hora = $('#txt_recibir_hora').val();
 
     if (descripcion === ""){
-        alert('Escriba una descripcion del producto que solicita');
+        crearMultiplesNotificaciones('danger','Escriba una descripcion del producto que solicita');
         document.getElementById('txta_descripcion').focus();
         return false;
     }
 
     if (flag_direccion === true ) {
         if (calle_comercio === "" || numero_comercio === "" || ciudad_comercio === "-1") {
-            alert('Faltan datos en dirección del comercio');
+            crearMultiplesNotificaciones('danger','Faltan datos en dirección del comercio');
             document.getElementById('txt_comercio_calle').focus();
             return false;
         }
     }
 
     if (calle === "" || numero === "" || ciudad === "-1"){
-        alert('Faltan datos en la dirección de entrega');
+        crearMultiplesNotificaciones('danger','Faltan datos en la dirección de entrega');
         document.getElementById('txt_calle').focus();
         return false;
     }
 
     if (flag_efectivo === true) {
         if (monto === "") { //monto es numero
-            alert('Escriba el monto');
+            crearMultiplesNotificaciones('danger','Escriba el monto');
             document.getElementById('txt_monto').focus();
             return false;
         }
@@ -193,20 +140,22 @@ function validarCampos() {
         if (numero_tarjeta === '' || nombre_tarjeta === '' ||
             apellido_tarjeta === '' || fecha_vencimiento_tarjeta === '' ||
             cvc === ''){
-            alert('Faltan datos de la tarjeta');
+            crearMultiplesNotificaciones('danger','Faltan datos de la tarjeta');
+            document.getElementById('txt_nro_tarjeta').focus();
             return false;
         }
     }
 
     if (flag_recibir){
         if (recibir_fecha === '' || recibir_hora === ''){
-            alert('Faltan datos del lugar donde recibirlo');
+            crearMultiplesNotificaciones('danger','Faltan datos de la fecha/hora donde recibirlo');
+            document.getElementById('txt_recibir_fecha').focus();
             return false;
         }
     }
 
     if ( tamano_archivo > 5242880){
-        alert('tamaño archivo demaciado grande');
+        crearMultiplesNotificaciones('danger','tamaño archivo demaciado grande');
         return false;
     }
     return true;
