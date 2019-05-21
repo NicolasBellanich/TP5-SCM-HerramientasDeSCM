@@ -11,20 +11,21 @@
 <body>
 
     <div class="container">
-        <!--Falta requerimiento foto tamaño-->
-        <!--El mapa no deja indicar direccion-->
-        <!--la fecha de vencimiento no indica el formato que pide-->
-        <!--NO ESTAN VALIDADOS LOS CASOS DE PRUEBA-->
-        <div class="h1">
-            Deliver Eats
+        <div class="row">
+            <div class="col">
+                <div class="h1">
+                    Deliver Eats
+                </div>
+
+            </div>
         </div>
 
         <form id="form_registrar_pedido_lo_q_sea" action="backend/registrarPedidoLoQueSea.php" method="POST" enctype="multipart/form-data">
 
 
-        <div class="h3 fas fa-info-circle text-center">
+        <h3 class="fas fa-info-circle text-center">
             Informacion general
-        </div>
+        </h3>
 
         <div>
             <p class="fas fa-arrow-circle-right">
@@ -40,11 +41,12 @@
         </div>
 
         <div>
-            <p class="fas fa-arrow-circle-right">
-                Foto opcional desriptiva
-            </p>
+            <label for="file_descripcion" class="fas fa-arrow-circle-right">
+                Foto desriptiva (opcional)
+            </label>
 
-            <input type=file size=60 id="file_descripcion" name="archivo" accept="image/jpg"/>
+            <br>
+            <input type="file" id="file_descripcion" name="archivo" accept="image/jpg"/>
         </div>
 
         <hr>
@@ -54,19 +56,26 @@
             Dirección del Comercio
         </h3>
 
+            <div class="row">
+                <div class="col">
+                    <input name="radio_comercio_direccion" id="radio_comercio_dir" class="" type="radio" value="direccion" checked/>
+                    <label class="" for="radio_comercio_dir">
+                        Escribir dirección
+                    </label>
 
-        <p class="auto-style3">
-            <input name="radio_comercio_direccion" id="radio_comercio_dir" class="" type="radio" value="direccion" checked/>
-            <label class="" for="radio_comercio_dir">
-                Escribir dirección
-            </label>
-        </p>
-        <p class="auto-style3">
-            <input name="radio_comercio_direccion" id="radio_comercio_maps" class="" type="radio" value="maps"/>
-            <label for="radio_comercio_maps">
-                Dirección google maps
-            </label>
-        </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input name="radio_comercio_direccion" id="radio_comercio_maps" class="" type="radio" value="maps"/>
+                    <label for="radio_comercio_maps">
+                        Dirección google maps
+                    </label>
+
+                </div>
+            </div>
+
 
         <div id="div_comercio_direccion">
             <div>
@@ -167,7 +176,9 @@
 
 
         <div id="div_pago_efectivo">
-            <label for="txt_monto">Monto:</label>
+            <label for="txt_monto">
+                Monto:
+            </label>
             <input type="text" id="txt_monto" class="form-control" name="pago_monto"/>
         </div>
         <div id="div_pago_visa">
@@ -230,6 +241,8 @@
     <script src="../Librerias/popper_1.12.9/popper.min.js" ></script>
     <script src="../Librerias/bootstrap_4/js/bootstrap.min.js" ></script>
     <script src="../Librerias/bootstrap_notify/js/bootstrap_notify.js" ></script>
+
+    <script src="js/notifications.js"></script>
 
     <script src="js/googleMaps.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW-uMMRdBCo8KERPnCuVo2loYz5KcoIqo&callback=myMap"></script>
